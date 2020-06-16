@@ -75,8 +75,9 @@ class Main extends React.Component {
       return (
         <div className="wrapper">
           <h2>Counting, baby!</h2>
-          <h3>Words: {this.state.words}</h3>
-          <input onChange={this.handleWord} />
+          <h3>Count: {this.state.count}</h3>
+          <input onChange={this.IncreaseCount} />
+          <input onChange={this.DecreaseCount} />
           <button onClick ={this.handlClick}>Count!</button>
         </div>
       );
