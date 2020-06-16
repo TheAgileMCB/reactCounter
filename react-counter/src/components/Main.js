@@ -11,8 +11,8 @@ class Main extends React.Component {
       colorClass: "zero",
       name: "",
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleChange = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
@@ -33,13 +33,13 @@ class Main extends React.Component {
     this.setState({ count });
   }
 
-  handleChange(event) {
-    var value = event.target.value;
+  handleChange = e => {
+    var value = e.target.value;
     this.setState({ value });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit = e => {
+    e.preventDefault();
     var previousCount = this.state.count;
     var count = this.state.value;
     this.colorChange(previousCount, count);
@@ -82,8 +82,8 @@ class Main extends React.Component {
               <input type="text" ref={this.textInput} name="form-name" className="input" />
               <button className="reset-button">Reset</button>
 
-              <button onClick={this.IncreaseCount}>Click to Increment</button>
-              <button onClick={this.DecreaseCount}>Click to Increment</button>
+              <button onClick={this.IncreaseCount}>UP!</button>
+              <button onClick={this.DecreaseCount}>DOWN!</button>
               <h4 className={this.state.colorClass}>{this.state.count} clicks!</h4>
             </form>
 
