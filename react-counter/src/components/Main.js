@@ -1,26 +1,26 @@
 import React from 'react';
 
 class Main extends React.Component {
-    constructor(props) {
-      super(props);
-  
-      this.textInput = React.createRef();
-      this.state = {
-        count: 0,
-        value: 0,
-        colorClass: "zero",
-        name: "",
-      };
-      this.handleChange = this.handleChange.bind(this);
-      this.handleChange = this.handleSubmit.bind(this);
+  constructor(props) {
+    super(props);
 
-    }
-  
-    // event handler is a class prop
-    IncreaseCount = e => {
-      e.preventDefault();
-      var previousCount = this.state.count;
-      var count = this.state.count + 1;
+    this.textInput = React.createRef();
+    this.state = {
+      count: 0,
+      value: 0,
+      colorClass: "zero",
+      name: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleSubmit.bind(this);
+
+  }
+
+  // event handler is a class prop
+  IncreaseCount = e => {
+    e.preventDefault();
+    var previousCount = this.state.count;
+    var count = this.state.count + 1;
     this.colorChange(previousCount, count);
     this.setState({ count });
   }
@@ -29,8 +29,8 @@ class Main extends React.Component {
     e.preventDefault();
     var previousCount = this.state.count;
     var count = this.state.count - 1;
-  this.colorChange(previousCount, count);
-  this.setState({ count });
+    this.colorChange(previousCount, count);
+    this.setState({ count });
   }
 
   handleChange(event) {
@@ -38,7 +38,7 @@ class Main extends React.Component {
     this.setState({ value });
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault();
     var previousCount = this.state.count;
     var count = this.state.value;
@@ -55,33 +55,43 @@ class Main extends React.Component {
   colorChange = (previousCount, count) => {
     var colorClass;
 
-    if (count < 0){
+    if (count < 0) {
       colorClass = "negative";
-      this.setState({ colorClass});
+      this.setState({ colorClass });
     }
 
-    if (count === 0){
+    if (count === 0) {
       colorClass = "zero";
-      this.setState({ colorClass});
+      this.setState({ colorClass });
     }
 
-    if (count > 0){
+    if (count > 0) {
       colorClass = "positive";
-      this.setState({ colorClass});
+      this.setState({ colorClass });
     }
   }
-  
-    render() {
-      return (
-        <div className="wrapper">
-          <h2>Counting, baby!</h2>
-          <h3>Count: {this.state.count}</h3>
-          <input onChange={this.IncreaseCount} />
-          <input onChange={this.DecreaseCount} />
-          <button onClick ={this.handlClick}>Count!</button>
-        </div>
-      );
-    }
+
+  render() {
+    return (
+      <body>
+        <main>
+          <div className="wrapper">
+            <h2>Clickbait! Welcome, <span>{!!this.state.name ? this.state.name : ""}!</span></h2>
+            <form className="form" onSubmit={this.handleSubmit}>
+              <label for="form-name">Enter your name: </label>
+              <input type="text" ref={this.textInput} name="form-name" className="input" />
+              <button className="reset-button">Reset</button>
+
+              <button onClick={this.IncreaseCount}>Click to Increment</button>
+              <button onClick={this.DecreaseCount}>Click to Increment</button>
+              <h4 className={this.state.colorClass}>{this.state.count} clicks!</h4>
+            </form>
+
+          </div>
+        </main>
+      </body>
+    );
   }
-  
-  export default Main;
+}
+
+export default Main;
